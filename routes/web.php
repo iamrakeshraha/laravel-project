@@ -13,17 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/demo/{name}/{id?}', function ($name, $id = null) {
-    // print $name. $id;
-    $data = compact('name','id');
-    // return view('demo');
-    // var_dump ($data);
-    return view('demo')->with($data);
-});
-
-Route::get('/get', function(){
-    return "hello postman";
-});
-Route::any('/post', function(){
-    return "hello post request";
+Route::get('/{name?}', function ($name = null) {
+    $demo = "<h2>This is demo for {!! name !!}</h2>";
+    $data = compact('name', 'demo');
+    return view('home')->with($data);
 });
