@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('register',[RegistrationController::class, 'index']);        // '/' sign not mendatory for routes
+Route::post('register',[RegistrationController::class, 'register']);
