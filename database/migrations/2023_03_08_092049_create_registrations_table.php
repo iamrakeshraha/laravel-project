@@ -14,11 +14,11 @@ class CreateRegistrationsTable extends Migration
     public function up()
     {
         Schema::create('registrations', function (Blueprint $table) {
-            $table->id('reg_id');
+            $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('_token')
+            $table->string('_token');
             $table->timestamps();
         });
     }

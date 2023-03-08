@@ -14,6 +14,11 @@
 
 <body>
     {{-- {{ $registrations }} --}}
+    <div class="text-right">
+        <a href="{{ Route('customer.create') }}"> {{-- "customer.create" is a name of a create page route --}}
+            <button type="button" class="btn btn-info center">Add</button></a>
+    </div>
+
     <table class="table table-striped table-inverse table-responsive">
         <thead class="thead-inverse">
             <tr>
@@ -22,17 +27,28 @@
                 <th>Email</th>
                 <th>Password</th>
                 <th>Token</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($registrations as $user)
+            @foreach ($registrations as $key => $user)
                 <tr>
                     <td scope="row"></td>
-                    <td>{{ $user['reg_id'] }}</td>
+                    <td>{{ $user['id'] }}</td>
                     <td>{{ $user['name'] }}</td>
                     <td>{{ $user['email'] }}</td>
                     <td>{{ $user['password'] }}</td>
                     <td>{{ $user['_token'] }}</td>
+                    <td>
+                        <a href="{{ url('dashboard/update') }}/{{ $user->id }}">
+                            <button class="btn btn-warning">Update</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('customer.delete', [($id = $user['id'])]) }}">
+                            <button class="btn btn-danger">Delete</button>
+                        </a>
+                    </td>
                 </tr>
             @endforeach
 

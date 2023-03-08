@@ -46,4 +46,24 @@ class RegistrationController extends Controller
         $data1 = compact('registrations');
         return view('dashboard')->with($data1);
     }
+
+    public function update($id){
+        // dd($id);
+        $registration= registration::find($id);
+        $data= compact('registration');
+        // dd($data);
+        return view('form')->with($data);
+    }
+
+    public function delete($id){
+        // print_r ($id);
+        // dd($id);
+        $reg_id = $id;
+        $registration = registration::find($reg_id);
+        // dd($registration);
+        if(!is_null($registration)){
+            $registration->delete();
+        }
+        return redirect('/dashboard');
+    }
 }

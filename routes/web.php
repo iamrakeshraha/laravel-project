@@ -17,7 +17,7 @@ use App\Models\registration;
 |
 */
 
-Route::get('register',[RegistrationController::class, 'index']);        // '/' sign not mendatory for routes
+Route::get('register',[RegistrationController::class, 'index'])->name("customer.create");        // '/' sign not mendatory for routes
 Route::post('register',
 [RegistrationController::class, 'register'],
 //  function(){
@@ -28,6 +28,8 @@ Route::post('register',
 );
 
 Route::get('dashboard',[RegistrationController::class, 'dashboard']);
+Route::get('dashboard/update/{id}',[RegistrationController::class, 'update'])->name('customer.update');
+Route::get('dashboard/delete/{id}',[RegistrationController::class, 'delete'])->name("customer.delete"); // '/' sign not mendatory
 
 Route::get('customers', function () {
    $customers = Customers::all();

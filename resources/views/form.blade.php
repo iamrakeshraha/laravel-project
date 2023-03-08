@@ -15,12 +15,20 @@
 <body>
     <form action="{{ url('/') }}/register" method="post">
         @csrf
+        {{-- {{ $registration }} --}}
+        @if ($registration)
+            {
+            {{ $data = $registration }}
+            }
+        @else
+            {{ $data = '' }}
+        @endif
         <div class="container">
             <h1 class='text-center'>Registration</h1>
             <div class="form-group">
                 <label for="">Name</label>
                 <input type="text" name="name" id="" class="form-control" placeholder=""
-                    value="{{ old('name') }}" aria-describedby="helpId">
+                    value="{{ $data ? $data->name : old('name') }}" aria-describedby="helpId">
                 <span class="text-danger">
                     @error('name')
                         {{ $message }}
